@@ -22,7 +22,7 @@ app.get('/stockx/search', async (req,res) => {
       }
     }
   }
-  res.send(productList);
+  res.send(listToSend);
 })
 
 const server = app.listen(3000, function() {console.log('api connected')});
