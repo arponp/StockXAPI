@@ -16,8 +16,8 @@ app.get('/stockx/search', async (req,res) => {
   let productList = await stockX.newSearchProducts(req.query.keyword);
   for (var i=0; i<productList.length; i++) {
     let currentProduct = productList[i];
-    if (currentProduct.hasOwnProperty('style_id') && currentProduct.hasOwnProperty('product_category')) {
-      if (currentProduct.product_category == "sneakers") {
+    if (currentProduct.hasOwnProperty('style_id') && currentProduct.hasOwnProperty('product_category') && currentProduct.hasOwnProperty('thumbnail_url')) {
+      if (currentProduct.product_category == "sneakers" && currentProduct.thumbnail_url != "") {
         listToSend.push(currentProduct)
       }
     }
