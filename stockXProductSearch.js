@@ -12,8 +12,17 @@ app.get('/stockx/search', async (req,res) => {
   console.log("Keywords: " + req.query.keyword)
   // let allProducts = []
   // console.log(req.query.keyword)
+  var listToSend = [];
   let productList = await stockX.newSearchProducts(req.query.keyword);
-  res.send(productList)
+  for (var i=0; i<productList.length; i++) {
+    let currentProduct = productList[i];
+    if (currentProduct.hasOwnProperty('style_id') && currentProduct.hasOwnProperty('product_category')) {
+      if (currentProduct.product_category == "sneakers") {
+        listToSend.push(currentProduct)
+      }
+    }
+  }
+  res.send(productList);
 })
 
 const server = app.listen(3000, function() {console.log('api connected')});
